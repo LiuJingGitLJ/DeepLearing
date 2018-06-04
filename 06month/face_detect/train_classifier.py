@@ -2,6 +2,7 @@
 
 import tensorflow as tf
 import numpy as np
+
 import cv2
 
 import os
@@ -25,7 +26,7 @@ threshold = [ 0.6, 0.7, 0.7 ]  # three steps's threshold
 factor = 0.709 # scale factor
 
 #facenet embedding parameters
-model_dir='./model_check_point/model-20160506.ckpt-500000'#"Directory containing the graph definition and checkpoint files.")
+model_dir='./model_check_point/model-20170506.ckpt-500000'#"Directory containing the graph definition and checkpoint files.")
 image_size=96 #"Image size (height, width) in pixels."
 pool_type='MAX' #"The type of pooling to use for some of the inception layers {'MAX', 'L2'}.
 use_lrn=False #"Enables Local Response Normalization after the first layers of the inception network."
@@ -102,7 +103,8 @@ if __name__ == '__main__':
     ema = tf.train.ExponentialMovingAverage(1.0)
     saver = tf.train.Saver(ema.variables_to_restore())
 
-    model_checkpoint_path='./model_check_point/model-20160506.ckpt-500000'
+    model_checkpoint_path='model-20160506.ckpt'
+    print(model_checkpoint_path)
 
     saver.restore(sess, model_checkpoint_path)
     print('facenet embedding模型建立完毕')
